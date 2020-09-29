@@ -7,7 +7,7 @@ import (
 )
 
 // NewMix just gin and tonic.
-// Creates a customized gin.Engine.
+// Creates a customized gin.Engine with all addons.
 func NewMix(mode config.Mode, logger *zap.Logger) *gin.Engine {
 	r := gin.New()
 
