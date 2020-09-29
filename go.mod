@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/drone/signal v1.0.0
+	github.com/gin-gonic/gin v1.6.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/jinzhu/configor v1.2.0
 	github.com/pkg/errors v0.8.1
@@ -12,7 +13,6 @@ require (
 	go.uber.org/zap v1.16.0
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
 	google.golang.org/grpc v1.32.0
-	gopkg.in/yaml.v2 v2.2.8 // indirect
 	gorm.io/driver/postgres v1.0.2
 	gorm.io/gorm v1.20.2
 )
