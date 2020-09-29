@@ -3,6 +3,7 @@ module github.com/farwydi/cleanwhale
 go 1.14
 
 require (
+	github.com/drone/signal v1.0.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/jinzhu/configor v1.2.0
 	github.com/pkg/errors v0.8.1
