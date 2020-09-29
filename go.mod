@@ -6,6 +6,7 @@ require (
 	github.com/drone/signal v1.0.0
 	github.com/gin-gonic/gin v1.6.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
+	github.com/hashicorp/golang-lru v0.5.4
 	github.com/jinzhu/configor v1.2.0
 	github.com/pkg/errors v0.8.1
 	github.com/prometheus/client_golang v1.7.1
