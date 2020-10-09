@@ -35,11 +35,11 @@ func ExampleWave() {
 
 	w := wave.NewWave(context.Background(), logger.Named("main"))
 
-	w.AddSever(whalehttp.NewHTTPServer(
+	w.AddServer(whalehttp.NewHTTPServer(
 		cfg.Transport.HTTP1, logger.Named("api1"), nil))
-	w.AddSever(whalehttp.NewHTTPServer(
+	w.AddServer(whalehttp.NewHTTPServer(
 		cfg.Transport.HTTP2, logger.Named("api2"), nil))
-	w.AddSever(whalegrpc.NewGRPCServer(
+	w.AddServer(whalegrpc.NewGRPCServer(
 		cfg.Transport.GRPC, logger.Named("grpc"), func(srv *grpc.Server) {
 			// grpc service is registered here
 		}))

@@ -41,15 +41,15 @@ func (s *Wave) AddIf(condition bool, f func(ctx context.Context) error) {
 	}
 }
 
-// AddSever just add transport.
-func (s *Wave) AddSever(srv transport.Server) {
+// AddServer just add transport.
+func (s *Wave) AddServer(srv transport.Server) {
 	s.eg.Go(func() error {
 		return srv.Run(s.ctx)
 	})
 }
 
-// AddSeverIf conditional add transport.
-func (s *Wave) AddSeverIf(condition bool, srv transport.Server) {
+// AddServerIf conditional add transport.
+func (s *Wave) AddServerIf(condition bool, srv transport.Server) {
 	if condition {
 		s.eg.Go(func() error {
 			return srv.Run(s.ctx)
