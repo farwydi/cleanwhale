@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.uber.org/zap"
 )
 
 const metricsPath = "/metrics"
@@ -21,6 +22,10 @@ func AddMetricsHandler(r *gin.Engine) {
 
 // NewMetricsMiddleware make handler with registered basic metrics.
 func NewMetricsMiddleware() func(c *gin.Context) {
+	if metrics.IsSetupCalled() {
+		zap.L().Warn("Metrics is not register!, Call metrics.RegisterMetrics(...)")
+	}
+
 	return func(c *gin.Context) {
 		requestURL := c.Request.URL.String()
 
@@ -61,10 +66,21 @@ func NewMetricsMiddleware() func(c *gin.Context) {
 			"handler": requestURL,
 		}
 
-		metrics.RequestCount.With(labels).Inc()
-		metrics.RequestDuration.With(labels).Observe(secondsSinceNext)
-		metrics.RequestSize.With(labels).Observe(requestSize)
-		metrics.ResponseSize.With(labels).Observe(responseSize)
+		if metrics.RequestCount != nil {
+			metrics.RequestCount.With(labels).Inc()
+		}
+
+		if metrics.RequestDuration != nil {
+			metrics.RequestDuration.With(labels).Observe(secondsSinceNext)
+		}
+
+		if metrics.RequestSize != nil {
+			metrics.RequestSize.With(labels).Observe(requestSize)
+		}
+
+		if metrics.ResponseSize != nil {
+			metrics.ResponseSize.With(labels).Observe(responseSize)
+		}
 	}
 }
 

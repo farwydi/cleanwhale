@@ -7,6 +7,8 @@ import (
 )
 
 var (
+	isSetup = false
+
 	// RequestCount counts the total number of requests.
 	RequestCount *prometheus.CounterVec
 
@@ -19,6 +21,11 @@ var (
 	// RequestSize counts the number of bytes received.
 	RequestSize *prometheus.SummaryVec
 )
+
+// IsSetupCalled Returns the status of the method RegisterMetrics call.
+func IsSetupCalled() bool {
+	return isSetup
+}
 
 // RegisterMetrics base http metrics in prometheus.
 func RegisterMetrics(subsystem string, logger *zap.Logger) {
@@ -77,4 +84,6 @@ func RegisterMetrics(subsystem string, logger *zap.Logger) {
 			zap.String("metric", "request_size_bytes"),
 			zap.Error(err))
 	}
+
+	isSetup = true
 }
